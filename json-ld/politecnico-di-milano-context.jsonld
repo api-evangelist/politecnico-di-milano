@@ -1,0 +1,77 @@
+{
+  "@context": {
+    "schema": "https://schema.org/",
+    "polimi": "https://www.polimi.it/vocab#",
+    "@vocab": "https://www.polimi.it/vocab#",
+    "name": "schema:name",
+    "url": "schema:url",
+    "description": "schema:description",
+    "CollegeOrUniversity": "schema:CollegeOrUniversity",
+    "Dataset": "schema:Dataset",
+    "DataCatalog": "schema:DataCatalog",
+    "identifier": "schema:identifier",
+    "dateModified": "schema:dateModified",
+    "datePublished": "schema:datePublished",
+    "creator": "schema:creator",
+    "publisher": "schema:publisher",
+    "subjectOf": "schema:subjectOf",
+    "isPartOf": "schema:isPartOf",
+    "license": "schema:license",
+    "keywords": "schema:keywords",
+    "email": "schema:email",
+    "address": "schema:address",
+    "repository": {
+      "@id": "polimi:repository",
+      "@type": "schema:DataCatalog"
+    },
+    "oaiBaseURL": {
+      "@id": "polimi:oaiBaseURL",
+      "@type": "@id"
+    },
+    "metadataFormat": "polimi:metadataFormat",
+    "set": "polimi:set",
+    "record": {
+      "@id": "polimi:record",
+      "@type": "schema:CreativeWork"
+    },
+    "identityProvider": {
+      "@id": "polimi:identityProvider",
+      "@type": "schema:Service"
+    },
+    "entityID": {
+      "@id": "polimi:entityID",
+      "@type": "@id"
+    }
+  },
+  "@type": "CollegeOrUniversity",
+  "@id": "https://www.polimi.it/en/",
+  "name": "Politecnico di Milano",
+  "url": "https://www.polimi.it/en/",
+  "description": "Italy's largest technical university, focused on engineering, architecture, and design.",
+  "email": "catalogoricerca@polimi.it",
+  "subjectOf": [
+    {
+      "@type": "DataCatalog",
+      "@id": "https://re.public.polimi.it/",
+      "name": "IRIS Re.Public@Polimi",
+      "url": "https://re.public.polimi.it/",
+      "description": "IRIS - POLIMI - prod institutional research repository exposing an OAI-PMH 2.0 metadata harvesting endpoint.",
+      "oaiBaseURL": "https://re.public.polimi.it/oai/request"
+    },
+    {
+      "@type": "DataCatalog",
+      "@id": "https://opendata.polimi.it/",
+      "name": "Politecnico di Milano Open Data Portal",
+      "url": "https://opendata.polimi.it/",
+      "description": "Institutional open data portal publishing the university's public datasets."
+    },
+    {
+      "@type": "schema:Service",
+      "@id": "https://shibidp.polimi.it/idp/shibboleth",
+      "name": "Politecnico di Milano Shibboleth Identity Provider",
+      "url": "https://www.polimi.it/onlineservices",
+      "description": "Shibboleth/SAML2 identity provider participating in the Italian IDEM (GARR) academic identity federation.",
+      "entityID": "https://shibidp.polimi.it/idp/shibboleth"
+    }
+  ]
+}
