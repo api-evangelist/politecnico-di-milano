@@ -1,0 +1,97 @@
+---
+aid: politecnico-di-milano
+name: Politecnico di Milano
+description: >-
+  Politecnico di Milano is Italy's largest technical university, focused on
+  engineering, architecture, and design, and ranked #111 in the QS World
+  University Rankings 2025. Its public, machine-readable developer footprint is
+  limited and not consolidated into a single developer portal. The most
+  concrete public API surface is the OAI-PMH metadata endpoint of its IRIS
+  Re.Public@Polimi institutional research repository (CINECA platform), an open
+  data portal at opendata.polimi.it (browse/download, with no documented
+  programmatic API), and a Shibboleth/SAML2 identity provider participating in
+  the Italian IDEM (GARR) federation. Most student-facing service APIs (online
+  services / mobile app backends) are gated behind authentication and are not
+  publicly documented.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/politecnico-di-milano/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Research
+  - Open Data
+  - Repository
+  - OAI-PMH
+  - Identity
+  - Italy
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: politecnico-di-milano:iris-oai-pmh
+    name: IRIS Re.Public@Polimi OAI-PMH
+    description: >-
+      Public OAI-PMH 2.0 metadata harvesting endpoint for the IRIS
+      Re.Public@Polimi institutional research repository (CINECA platform). The
+      endpoint resolves and returns a valid Identify response naming the
+      repository "IRIS - POLIMI - prod" with Dublin Core and other metadata
+      formats available via ListMetadataFormats. Supports standard OAI-PMH verbs
+      (Identify, ListMetadataFormats, ListRecords, ListSets, GetRecord).
+    humanURL: https://re.public.polimi.it/
+    baseURL: https://re.public.polimi.it/oai/request
+    tags: [ Research, Repository, OAI-PMH, Open Access, IRIS, Metadata ]
+    properties:
+      - type: Documentation
+        url: https://re.public.polimi.it/
+      - type: API
+        url: https://re.public.polimi.it/oai/request?verb=Identify
+  - aid: politecnico-di-milano:open-data
+    name: Politecnico di Milano Open Data Portal
+    description: >-
+      Institutional open data portal (opendata.polimi.it) publishing the
+      university's public datasets. The portal resolves and serves dataset
+      browsing and download, but exposes no documented programmatic API at the
+      time of review (CKAN package_list, Socrata, and data.json probes returned
+      404). Listed as a data access point rather than a confirmed machine API.
+    humanURL: https://opendata.polimi.it/
+    tags: [ Open Data, Datasets, Research ]
+    properties:
+      - type: Documentation
+        url: https://opendata.polimi.it/
+  - aid: politecnico-di-milano:shibboleth-idp
+    name: Politecnico di Milano Shibboleth Identity Provider
+    description: >-
+      Shibboleth/SAML2 identity provider for Politecnico di Milano, serving
+      federated single sign-on as part of the Italian IDEM (GARR) academic
+      identity federation. The IdP metadata endpoint resolves publicly; it is an
+      authentication/federation service rather than a general-purpose data API.
+    humanURL: https://www.polimi.it/onlineservices
+    baseURL: https://shibidp.polimi.it/idp/shibboleth
+    tags: [ Identity, Authentication, SAML, Shibboleth, SSO, IDEM ]
+    properties:
+      - type: Documentation
+        url: https://www.polimi.it/onlineservices
+      - type: Authentication
+        url: https://shibidp.polimi.it/idp/shibboleth
+common:
+  - type: Website
+    url: https://www.polimi.it/en/
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/polimi/
+  - type: Authentication
+    url: https://shibidp.polimi.it/idp/shibboleth
+  - type: Plans
+    url: plans/politecnico-di-milano-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/politecnico-di-milano-rate-limits.yml
+  - type: FinOps
+    url: finops/politecnico-di-milano-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
