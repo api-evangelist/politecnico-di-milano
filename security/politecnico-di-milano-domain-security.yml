@@ -1,0 +1,29 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.polimi.it
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 25 15:12:43 2026 GMT
+  hsts: true
+  hsts_max_age: 15552000
+- host: re.public.polimi.it
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Dec  9 13:14:43 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: opendata.polimi.it
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov  4 01:00:39 2026 GMT
+  hsts: true
+  hsts_max_age: 15552000
+domains:
+- domain: polimi.it
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
