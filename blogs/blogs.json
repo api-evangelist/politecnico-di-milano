@@ -6,9 +6,10 @@
       "feed_url": "https://www.polimi.it/en/the-politecnico/news",
       "title": "Politecnico di Milano News",
       "saved": 0,
-      "method": "none"
+      "method": "agent-scrape",
+      "error": "parse_failed"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-06-03T00:00:00Z"
+  "post_count": 6,
+  "fetched": "2026-07-11T11:43:46Z"
 }
