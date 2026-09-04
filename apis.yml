@@ -43,7 +43,7 @@ accessModel:
   - probe
   generated: '2026-09-01'
   method: probed
-position: Provider
+position: Producing
 access: Public
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/politecnico-di-milano.png
 url: https://raw.githubusercontent.com/api-evangelist/politecnico-di-milano/refs/heads/main/apis.yml
