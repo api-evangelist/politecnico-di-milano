@@ -66,178 +66,264 @@ created: '2026-06-03'
 modified: '2026-09-01'
 specificationVersion: '0.23'
 apis:
-  - aid: politecnico-di-milano:open-data
-    name: Politecnico di Milano Open Data
-    x-operator: institution
-    x-operator-evidence: >-
-      Host www.opendata.polimi.it is under the institution's own registrable domain; the DCAT catalogue
-      names https://www.polimi.it as publisher, creator and rights holder.
-    description: >-
-      The university's own open data portal. It is not CKAN, Socrata or a data.json endpoint — all three
-      404 — but a DCAT-AP_IT catalogue serialised as RDF Turtle at /opendata_polimi.ttl, declaring 25
-      datasets each with a CSV and a JSON distribution at a stable, unauthenticated URL. All 25 JSON
-      distributions were fetched successfully on 2026-09-01, returning 38,255 rows in total. Every
-      distribution is CC BY 4.0. JSON bodies are UTF-8 with a byte-order mark and wrap rows in a single
-      `recordset` array. An earlier profile of this institution recorded "no documented programmatic API"
-      here; that was a probe-vocabulary failure, not an absence.
-    humanURL: https://www.opendata.polimi.it/
-    baseURL: https://www.opendata.polimi.it
-    tags: [ Open Data, DCAT, Datasets, Course Catalog, Research, Statistics ]
-    properties:
-      - type: Documentation
-        url: https://www.opendata.polimi.it/
-      - type: OpenAPI
-        url: openapi/politecnico-di-milano-opendata-openapi.yml
-      - type: JSONSchema
-        url: json-schema/politecnico-di-milano-opendata-recordset-schema.json
-      - type: JSONSchema
-        url: json-schema/politecnico-di-milano-course-catalog-schema.json
-      - type: Vocabulary
-        url: vocabulary/politecnico-di-milano-opendata-vocabulary.yml
-      - type: JSONLD
-        url: json-ld/politecnico-di-milano-opendata-catalog.jsonld
-      - type: Examples
-        url: examples/politecnico-di-milano-examples.yml
-      - type: API
-        url: https://www.opendata.polimi.it/opendata_polimi.ttl
-      - type: License
-        url: https://creativecommons.org/licenses/by/4.0/
-  - aid: politecnico-di-milano:iris-oai-pmh
-    name: Re.Public@Polimi OAI-PMH
-    x-operator: institution
-    x-operator-evidence: >-
-      Host re.public.polimi.it is under the institution's own registrable domain; Identify returns
-      adminEmail catalogoricerca@notifiche.polimi.it and repositoryIdentifier re.public.polimi.it.
-    description: >-
-      OAI-PMH 2.0 harvesting endpoint for IRIS Re.Public@Polimi, the institutional research product
-      catalogue. Live Identify returns repositoryName "IRIS - POLIMI - prod", earliest datestamp
-      2015-06-10, deletedRecord transient, and the identifier scheme oai:re.public.polimi.it:11311/<id>.
-      ListMetadataFormats returns oai_dc, didl and ore. The repository platform underneath is CINECA's
-      IRIS, but OAI-PMH is an OpenArchives standard served from the institution's own host over its own
-      metadata with its own admin contact — an institution-operated surface, unlike the IRIS REST API
-      recorded separately below.
-    humanURL: https://re.public.polimi.it/
-    baseURL: https://re.public.polimi.it/oai/request
-    tags: [ Research, Repository, OAI-PMH, Open Access, Metadata, Dublin Core ]
-    properties:
-      - type: Documentation
-        url: https://re.public.polimi.it/
-      - type: OpenAPI
-        url: openapi/politecnico-di-milano-iris-oai-pmh-openapi.yml
-      - type: API
-        url: https://re.public.polimi.it/oai/request?verb=Identify
-      - type: Errors
-        url: errors/politecnico-di-milano-errors.yml
-      - type: Specification
-        url: http://www.openarchives.org/OAI/openarchivesprotocol.html
-  - aid: politecnico-di-milano:politesi-oai-pmh
-    name: POLITESI OAI-PMH
-    x-operator: institution
-    x-operator-evidence: >-
-      Host www.politesi.polimi.it is under the institution's own registrable domain; Identify returns
-      adminEmail deposito-tesilaurea@notifiche.polimi.it and repositoryIdentifier www.politesi.polimi.it.
-    description: >-
-      A second, separate OAI-PMH 2.0 endpoint — the POLITESI archive of Politecnico di Milano theses and
-      dissertations, handle prefix 10589, earliest datestamp 2010-08-24. It offers a wider metadata set
-      than Re.Public@Polimi: ListMetadataFormats returns oai_dc, didl, ore AND datacite, and a live
-      ListRecords in the datacite prefix returns records in the DataCite Metadata Schema kernel-4.4. This
-      endpoint was not recorded in any previous profile of the institution.
-    humanURL: https://www.politesi.polimi.it/
-    baseURL: https://www.politesi.polimi.it/oai/request
-    tags: [ Research, Repository, OAI-PMH, Theses, DataCite, Metadata ]
-    properties:
-      - type: Documentation
-        url: https://www.politesi.polimi.it/
-      - type: OpenAPI
-        url: openapi/politecnico-di-milano-politesi-oai-pmh-openapi.yml
-      - type: API
-        url: https://www.politesi.polimi.it/oai/request?verb=Identify
-      - type: Conformance
-        url: conformance/politecnico-di-milano-conformance.yml
-  - aid: politecnico-di-milano:shibboleth-idp
-    name: Politecnico di Milano Shibboleth Identity Provider
-    x-operator: institution
-    x-operator-evidence: >-
-      Host shibidp.polimi.it is under the institution's own registrable domain; the EntityDescriptor
-      carries shibmd:Scope polimi.it and mdui:DisplayName "Politecnico di Milano".
-    description: >-
-      The university's own Shibboleth identity provider, publishing its SAML 2.0 EntityDescriptor at
-      https://shibidp.polimi.it/idp/shibboleth over unauthenticated HTTPS. The IDPSSODescriptor advertises
-      Shibboleth 1.0, SAML 1.1 and SAML 2.0 protocol support, scope polimi.it, bilingual mdui:UIInfo, and
-      signing and encryption certificates valid to 2040. This is an authentication surface, not a data API
-      — and it is one of the strongest institution-operated machine-readable surfaces a university has.
-    humanURL: https://aunicalogin.polimi.it/aunicalogin/idem.jsp?lang=EN
-    baseURL: https://shibidp.polimi.it/idp/shibboleth
-    tags: [ Identity, Authentication, SAML, Shibboleth, SSO, Federation ]
-    properties:
-      - type: Documentation
-        url: https://aunicalogin.polimi.it/aunicalogin/idem.jsp?lang=EN
-      - type: OpenAPI
-        url: openapi/politecnico-di-milano-shibboleth-idp-openapi.yml
-      - type: Authentication
-        url: authentication/politecnico-di-milano-authentication.yml
-      - type: API
-        url: https://shibidp.polimi.it/idp/shibboleth
-  - aid: politecnico-di-milano:idem-garr-federation
-    name: IDEM GARR Identity Federation membership
-    x-operator: federation
-    x-operator-evidence: >-
-      A grep of the IDEM GARR aggregate on 2026-09-01 returns four polimi.it entityIDs, including the
-      institution's own IdP https://shibidp.polimi.it/idp/shibboleth.
-    description: >-
-      Politecnico di Milano's membership of IDEM, the Italian academic identity federation run by GARR.
-      The federation aggregate at md.idem.garr.it carries the university's own IdP entity plus three of its
-      service providers — https://captive.wifi.polimi.it/shibboleth, https://collaborative.polimi.it and
-      https://www.pok.polimi.it. The metadata aggregate is GARR's contract and is not saved here; the
-      membership is a fact about the institution and is recorded as one. Federations are shared by
-      definition — that sharing is not misattribution.
-    humanURL: https://www.idem.garr.it/
-    baseURL: https://md.idem.garr.it/metadata/idem-metadata-sha256.xml
-    tags: [ Identity Federation, IDEM, GARR, eduGAIN, SAML, Membership ]
-    properties:
-      - type: Documentation
-        url: https://www.idem.garr.it/
-      - type: API
-        url: https://md.idem.garr.it/metadata/idem-metadata-sha256.xml
-  - aid: politecnico-di-milano:ror-registration
-    name: ROR registration
-    x-operator: registry
-    x-operator-evidence: >-
-      api.ror.org/v2/organizations/01nffqt88 returns 200 for Politecnico di Milano with link
-      https://polimi.it.
-    description: >-
-      The institution's entry in the Research Organization Registry, ROR ID 01nffqt88, carrying its
-      canonical name in Italian, English and French and its own domain. ROR's API is a registry the
-      institution is registered IN, not a contract it operates — the membership is recorded, the registry's
-      own contract is not saved.
-    humanURL: https://ror.org/01nffqt88
-    baseURL: https://api.ror.org/v2/organizations/01nffqt88
-    tags: [ Registry, Identifiers, ROR, Membership ]
-    properties:
-      - type: Documentation
-        url: https://ror.org/01nffqt88
-      - type: API
-        url: https://api.ror.org/v2/organizations/01nffqt88
-  - aid: politecnico-di-milano:iris-rest
-    name: IRIS REST API (CINECA platform tenancy)
-    x-operator: tenant
-    x-operator-evidence: >-
-      Runs on the institution's host re.public.polimi.it but is the REST interface of CINECA's IRIS
-      (DSpace-CRIS) product; returns 401 with WWW-Authenticate Basic realm="Spring Security Application".
-    description: >-
-      Politecnico di Milano's tenancy of CINECA's IRIS research information platform. The data is the
-      university's; the contract is the vendor's, and it is not saved in this repository. Recorded here
-      because the relationship is a real institutional fact — the university's research catalogue runs on
-      IRIS — and deleting the relationship to avoid crediting the vendor's engineering would destroy a true
-      surface. The endpoint is authenticated and has no public registration path.
-    humanURL: https://re.public.polimi.it/
-    baseURL: https://re.public.polimi.it/rest/api
-    tags: [ Research Repository, IRIS, CINECA, Tenant, Authenticated ]
-    properties:
-      - type: Documentation
-        url: https://re.public.polimi.it/
-      - type: Errors
-        url: errors/politecnico-di-milano-errors.yml
+- aid: politecnico-di-milano:idem-garr-federation
+  name: IDEM GARR Identity Federation membership
+  x-operator: federation
+  x-operator-evidence: >-
+    A grep of the IDEM GARR aggregate on 2026-09-01 returns four polimi.it entityIDs, including the institution's
+    own IdP https://shibidp.polimi.it/idp/shibboleth.
+  description: >-
+    Politecnico di Milano's membership of IDEM, the Italian academic identity federation run by GARR.
+    The federation aggregate at md.idem.garr.it carries the university's own IdP entity plus three of
+    its service providers — https://captive.wifi.polimi.it/shibboleth, https://collaborative.polimi.it
+    and https://www.pok.polimi.it. The metadata aggregate is GARR's contract and is not saved here; the
+    membership is a fact about the institution and is recorded as one. Federations are shared by definition
+    — that sharing is not misattribution.
+  humanURL: https://www.idem.garr.it/
+  baseURL: https://md.idem.garr.it/metadata/idem-metadata-sha256.xml
+  tags:
+  - Identity Federation
+  - IDEM
+  - GARR
+  - eduGAIN
+  - SAML
+  - Membership
+  properties:
+  - type: Documentation
+    url: https://www.idem.garr.it/
+  - type: API
+    url: https://md.idem.garr.it/metadata/idem-metadata-sha256.xml
+- aid: politecnico-di-milano:ror-registration
+  name: ROR registration
+  x-operator: registry
+  x-operator-evidence: >-
+    api.ror.org/v2/organizations/01nffqt88 returns 200 for Politecnico di Milano with link https://polimi.it.
+  description: >-
+    The institution's entry in the Research Organization Registry, ROR ID 01nffqt88, carrying its canonical
+    name in Italian, English and French and its own domain. ROR's API is a registry the institution is
+    registered IN, not a contract it operates — the membership is recorded, the registry's own contract
+    is not saved.
+  humanURL: https://ror.org/01nffqt88
+  baseURL: https://api.ror.org/v2/organizations/01nffqt88
+  tags:
+  - Registry
+  - Identifiers
+  - ROR
+  - Membership
+  properties:
+  - type: Documentation
+    url: https://ror.org/01nffqt88
+  - type: API
+    url: https://api.ror.org/v2/organizations/01nffqt88
+- aid: politecnico-di-milano:iris-rest
+  name: IRIS REST API (CINECA platform tenancy)
+  x-operator: tenant
+  x-operator-evidence: >-
+    Runs on the institution's host re.public.polimi.it but is the REST interface of CINECA's IRIS (DSpace-CRIS)
+    product; returns 401 with WWW-Authenticate Basic realm="Spring Security Application".
+  description: >-
+    Politecnico di Milano's tenancy of CINECA's IRIS research information platform. The data is the university's;
+    the contract is the vendor's, and it is not saved in this repository. Recorded here because the relationship
+    is a real institutional fact — the university's research catalogue runs on IRIS — and deleting the
+    relationship to avoid crediting the vendor's engineering would destroy a true surface. The endpoint
+    is authenticated and has no public registration path.
+  humanURL: https://re.public.polimi.it/
+  baseURL: https://re.public.polimi.it/rest/api
+  tags:
+  - Research Repository
+  - IRIS
+  - CINECA
+  - Tenant
+  - Authenticated
+  properties:
+  - type: Documentation
+    url: https://re.public.polimi.it/
+  - type: Errors
+    url: errors/politecnico-di-milano-errors.yml
+- aid: politecnico-di-milano:politecnico-di-milano-catalog-api
+  name: Politecnico di Milano Catalog API
+  description: The DCAT-AP_IT catalogue describing every published dataset.
+  humanURL: https://www.opendata.polimi.it/
+  baseURL: https://www.opendata.polimi.it
+  tags:
+  - Catalog
+  properties:
+  - type: OpenAPI
+    url: openapi/politecnico-di-milano-catalog-api-openapi.yml
+  - type: Documentation
+    url: https://www.opendata.polimi.it/
+  - type: JSONSchema
+    url: json-schema/politecnico-di-milano-opendata-recordset-schema.json
+  - type: JSONSchema
+    url: json-schema/politecnico-di-milano-course-catalog-schema.json
+  - type: Vocabulary
+    url: vocabulary/politecnico-di-milano-opendata-vocabulary.yml
+  - type: JSONLD
+    url: json-ld/politecnico-di-milano-opendata-catalog.jsonld
+  - type: Examples
+    url: examples/politecnico-di-milano-examples.yml
+  - type: API
+    url: https://www.opendata.polimi.it/opendata_polimi.ttl
+  - type: License
+    url: https://creativecommons.org/licenses/by/4.0/
+  - type: Documentation
+    url: https://re.public.polimi.it/
+  - type: API
+    url: https://re.public.polimi.it/oai/request?verb=Identify
+  - type: Errors
+    url: errors/politecnico-di-milano-errors.yml
+  - type: Specification
+    url: http://www.openarchives.org/OAI/openarchivesprotocol.html
+  - type: Documentation
+    url: https://www.politesi.polimi.it/
+  - type: API
+    url: https://www.politesi.polimi.it/oai/request?verb=Identify
+  - type: Conformance
+    url: conformance/politecnico-di-milano-conformance.yml
+  - type: Documentation
+    url: https://aunicalogin.polimi.it/aunicalogin/idem.jsp?lang=EN
+  - type: Authentication
+    url: authentication/politecnico-di-milano-authentication.yml
+  - type: API
+    url: https://shibidp.polimi.it/idp/shibboleth
+- aid: politecnico-di-milano:politecnico-di-milano-distributions-api
+  name: Politecnico di Milano Distributions API
+  description: The CSV and JSON files each dataset is distributed as.
+  humanURL: https://www.opendata.polimi.it/
+  baseURL: https://www.opendata.polimi.it
+  tags:
+  - Distributions
+  properties:
+  - type: OpenAPI
+    url: openapi/politecnico-di-milano-distributions-api-openapi.yml
+  - type: Documentation
+    url: https://www.opendata.polimi.it/
+  - type: JSONSchema
+    url: json-schema/politecnico-di-milano-opendata-recordset-schema.json
+  - type: JSONSchema
+    url: json-schema/politecnico-di-milano-course-catalog-schema.json
+  - type: Vocabulary
+    url: vocabulary/politecnico-di-milano-opendata-vocabulary.yml
+  - type: JSONLD
+    url: json-ld/politecnico-di-milano-opendata-catalog.jsonld
+  - type: Examples
+    url: examples/politecnico-di-milano-examples.yml
+  - type: API
+    url: https://www.opendata.polimi.it/opendata_polimi.ttl
+  - type: License
+    url: https://creativecommons.org/licenses/by/4.0/
+  - type: Documentation
+    url: https://re.public.polimi.it/
+  - type: API
+    url: https://re.public.polimi.it/oai/request?verb=Identify
+  - type: Errors
+    url: errors/politecnico-di-milano-errors.yml
+  - type: Specification
+    url: http://www.openarchives.org/OAI/openarchivesprotocol.html
+  - type: Documentation
+    url: https://www.politesi.polimi.it/
+  - type: API
+    url: https://www.politesi.polimi.it/oai/request?verb=Identify
+  - type: Conformance
+    url: conformance/politecnico-di-milano-conformance.yml
+  - type: Documentation
+    url: https://aunicalogin.polimi.it/aunicalogin/idem.jsp?lang=EN
+  - type: Authentication
+    url: authentication/politecnico-di-milano-authentication.yml
+  - type: API
+    url: https://shibidp.polimi.it/idp/shibboleth
+- aid: politecnico-di-milano:politecnico-di-milano-federation-api
+  name: Politecnico di Milano Federation API
+  description: SAML 2.0 metadata publication.
+  humanURL: https://www.opendata.polimi.it/
+  baseURL: https://www.opendata.polimi.it
+  tags:
+  - Federation
+  properties:
+  - type: OpenAPI
+    url: openapi/politecnico-di-milano-federation-api-openapi.yml
+  - type: Documentation
+    url: https://www.opendata.polimi.it/
+  - type: JSONSchema
+    url: json-schema/politecnico-di-milano-opendata-recordset-schema.json
+  - type: JSONSchema
+    url: json-schema/politecnico-di-milano-course-catalog-schema.json
+  - type: Vocabulary
+    url: vocabulary/politecnico-di-milano-opendata-vocabulary.yml
+  - type: JSONLD
+    url: json-ld/politecnico-di-milano-opendata-catalog.jsonld
+  - type: Examples
+    url: examples/politecnico-di-milano-examples.yml
+  - type: API
+    url: https://www.opendata.polimi.it/opendata_polimi.ttl
+  - type: License
+    url: https://creativecommons.org/licenses/by/4.0/
+  - type: Documentation
+    url: https://re.public.polimi.it/
+  - type: API
+    url: https://re.public.polimi.it/oai/request?verb=Identify
+  - type: Errors
+    url: errors/politecnico-di-milano-errors.yml
+  - type: Specification
+    url: http://www.openarchives.org/OAI/openarchivesprotocol.html
+  - type: Documentation
+    url: https://www.politesi.polimi.it/
+  - type: API
+    url: https://www.politesi.polimi.it/oai/request?verb=Identify
+  - type: Conformance
+    url: conformance/politecnico-di-milano-conformance.yml
+  - type: Documentation
+    url: https://aunicalogin.polimi.it/aunicalogin/idem.jsp?lang=EN
+  - type: Authentication
+    url: authentication/politecnico-di-milano-authentication.yml
+  - type: API
+    url: https://shibidp.polimi.it/idp/shibboleth
+- aid: politecnico-di-milano:politecnico-di-milano-harvesting-api
+  name: Politecnico di Milano Harvesting API
+  description: The six OAI-PMH 2.0 verbs.
+  humanURL: https://www.opendata.polimi.it/
+  baseURL: https://www.opendata.polimi.it
+  tags:
+  - Harvesting
+  properties:
+  - type: OpenAPI
+    url: openapi/politecnico-di-milano-harvesting-api-openapi.yml
+  - type: Documentation
+    url: https://www.opendata.polimi.it/
+  - type: JSONSchema
+    url: json-schema/politecnico-di-milano-opendata-recordset-schema.json
+  - type: JSONSchema
+    url: json-schema/politecnico-di-milano-course-catalog-schema.json
+  - type: Vocabulary
+    url: vocabulary/politecnico-di-milano-opendata-vocabulary.yml
+  - type: JSONLD
+    url: json-ld/politecnico-di-milano-opendata-catalog.jsonld
+  - type: Examples
+    url: examples/politecnico-di-milano-examples.yml
+  - type: API
+    url: https://www.opendata.polimi.it/opendata_polimi.ttl
+  - type: License
+    url: https://creativecommons.org/licenses/by/4.0/
+  - type: Documentation
+    url: https://re.public.polimi.it/
+  - type: API
+    url: https://re.public.polimi.it/oai/request?verb=Identify
+  - type: Errors
+    url: errors/politecnico-di-milano-errors.yml
+  - type: Specification
+    url: http://www.openarchives.org/OAI/openarchivesprotocol.html
+  - type: Documentation
+    url: https://www.politesi.polimi.it/
+  - type: API
+    url: https://www.politesi.polimi.it/oai/request?verb=Identify
+  - type: Conformance
+    url: conformance/politecnico-di-milano-conformance.yml
+  - type: Documentation
+    url: https://aunicalogin.polimi.it/aunicalogin/idem.jsp?lang=EN
+  - type: Authentication
+    url: authentication/politecnico-di-milano-authentication.yml
+  - type: API
+    url: https://shibidp.polimi.it/idp/shibboleth
 common:
   - type: Website
     url: https://www.polimi.it/en/
