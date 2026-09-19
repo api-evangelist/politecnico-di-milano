@@ -133,6 +133,12 @@ apis:
   - Research Repository
   - IRIS
   - CINECA
+  - Tenants
+  - Authenticated
+  tags_raw:
+  - Research Repository
+  - IRIS
+  - CINECA
   - Tenant
   - Authenticated
   properties:
