@@ -1,0 +1,64 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcatapit: <http://dati.gov.it/onto/dcatapit#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix locn: <http://www.w3.org/ns/locn#> .
+@prefix hydra: <http://www.w3.org/ns/hydra/core#> .
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix gml: <http://www.opengis.net/gml/3.2> .
+@prefix gsp: <http://www.opengis.net/ont/geosparql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+<https://www.opendata.polimi.it/concept>
+rdf:type skos:Concept , owl:ObjectProperty .
+
+<https://www.polimi.it> # === ORGANIZZAZIONE
+a dcatapit:Agent , foaf:Agent ;
+dct:identifier "PM" ;
+foaf:name "Politecnico di Milano" .
+<https://www.opendata.polimi.it/catalog> # === CATALOG
+a dcatapit:Catalog , dcat:Catalog ;
+dct:title "Catalogo dati aperti del Politecnico di Milano"@it ;
+dct:description "Il Catalogo degli dati aperti del Politecnico di Milano"@it ;
+dct:modified "2024-10-18"^^xsd:date ;
+dct:issued "2023-10-30"^^xsd:date ;
+dct:publisher <https://www.polimi.it> ;
+dct:language <http://publications.europa.eu/resource/authority/language/ITA> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/course_catalog/> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/course_offering/> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/graduates/> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/graduates_by_cohort/> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/enrolments/> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/admission_title/> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/internships/> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/international_mobility/> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/phd_course_catalog/> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/phd_course_offering/> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/phd_enrolments/> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/phd_exams_ects_grade_distributions/> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/exams_ects_grade_distributions/> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/degrees_ects_grade_distributions/> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/scientific_publications/> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/publication_authors/> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/research_products/> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/scopus_contribution_by_nation/> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/wos_contribution_by_nation/> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/employment_bachelor_arc/> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/employment_bachelor_des/> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/employment_bachelor_eng/> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/employment_master_arc/> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/employment_master_des/> ;
+dcat:dataset <https://www.opendata.polimi.it/dataset/employment_master_eng/> ;
+foaf:homepage <https://www.opendata.polimi.it> ;
+dcat:themeTaxonomy <http://publications.europa.eu/resource/authority/data-theme> .
+<https://www.opendata.polimi.it/dataset/course_catalog/> # === DATASET course_catalog
+a dcatapit:Dataset , dcat:Dataset ;
+dct:identifier "PM_course_catalog" ;
+dct:title "Polimi - Catalogo Corsi di Laurea"@it ;
+dct:description "Elenco dei Corsi di Laurea con almeno un evento di iscrizione negli ultimi 10 A.A. o un evento di conseguimento del titolo negli ultimi 10 anni solari. "@it ;
+dcat:t

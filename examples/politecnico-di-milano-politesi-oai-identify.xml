@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="static/CINECAstyle.xsl"?><OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2026-09-01T16:40:20Z</responseDate><request verb="Identify">https://www.politesi.polimi.it/oai/request</request><Identify><repositoryName>POLITESI</repositoryName><baseURL>https://www.politesi.polimi.it/oai/request</baseURL><protocolVersion>2.0</protocolVersion><adminEmail>deposito-tesilaurea@notifiche.polimi.it</adminEmail><earliestDatestamp>2010-08-24T12:39:32Z</earliestDatestamp><deletedRecord>transient</deletedRecord><granularity>YYYY-MM-DDThh:mm:ssZ</granularity><description><oai-identifier xmlns="http://www.openarchives.org/OAI/2.0/oai-identifier" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai-identifier http://www.openarchives.org/OAI/2.0/oai-identifier.xsd">
+<scheme>oai</scheme>
+<repositoryIdentifier>www.politesi.polimi.it</repositoryIdentifier>
+<delimiter>:</delimiter>
+<sampleIdentifier>oai:www.politesi.polimi.it:10589/1234</sampleIdentifier>
+</oai-identifier></description></Identify></OAI-PMH>

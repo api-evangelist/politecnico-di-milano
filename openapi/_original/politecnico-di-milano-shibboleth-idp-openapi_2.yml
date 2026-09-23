@@ -1,0 +1,71 @@
+# x-archived-from: politecnico-di-milano-shibboleth-idp-openapi.yml
+# x-archived-on: 2026-09-16
+openapi: 3.1.0
+info:
+  title: Politecnico di Milano Shibboleth IdP Metadata
+  version: '2026-09-01'
+  summary: The publicly published SAML 2.0 metadata of the Politecnico di Milano Shibboleth identity provider.
+  description: |
+    Politecnico di Milano runs its own Shibboleth identity provider, `https://shibidp.polimi.it/idp/shibboleth`,
+    and publishes its SAML 2.0 `EntityDescriptor` at that same URL over plain HTTPS GET. A live fetch on
+    2026-09-01 returns `application/xml`, entityID `https://shibidp.polimi.it/idp/shibboleth`, an
+    `IDPSSODescriptor` advertising `urn:mace:shibboleth:1.0`, `urn:oasis:names:tc:SAML:1.1:protocol` and
+    `urn:oasis:names:tc:SAML:2.0:protocol`, a `shibmd:Scope` of `polimi.it`, `mdui:UIInfo` in Italian and
+    English, and signing/encryption `KeyDescriptor` certificates valid to 2040.
+
+    The same entityID is present in the **IDEM GARR** Italian academic federation aggregate at
+    `https://md.idem.garr.it/metadata/idem-metadata-sha256.xml`, alongside three Politecnico service
+    providers — `https://captive.wifi.polimi.it/shibboleth`, `https://collaborative.polimi.it` and
+    `https://www.pok.polimi.it`.
+
+    This is an authentication surface, not a data API: it describes where and how to federate with the
+    university, and returns no institutional data. It is nevertheless one of the strongest
+    institution-operated machine-readable surfaces the university has — the IdP is theirs, the keys are
+    theirs, the scope is theirs.
+
+    DERIVED by API Evangelist from live probes.
+  contact:
+    name: Politecnico di Milano — servizi online
+    url: https://aunicalogin.polimi.it/aunicalogin/idem.jsp?lang=EN
+  x-operator: institution
+  x-operator-evidence: >-
+    Host shibidp.polimi.it is under the institution's own registrable domain (polimi.it); the
+    EntityDescriptor carries shibmd:Scope polimi.it and mdui:DisplayName "Politecnico di Milano", and the
+    entityID appears in the IDEM GARR federation aggregate.
+  x-standard: SAML 2.0 metadata (OASIS) / Shibboleth
+  x-provenance:
+    generated: '2026-09-01'
+    method: derived
+    source:
+      - https://shibidp.polimi.it/idp/shibboleth
+      - https://md.idem.garr.it/metadata/idem-metadata-sha256.xml
+servers:
+  - url: https://shibidp.polimi.it
+    description: Politecnico di Milano Shibboleth identity provider
+tags:
+  - name: Federation
+    description: SAML 2.0 metadata publication.
+paths:
+  /idp/shibboleth:
+    get:
+      tags: [ Federation ]
+      summary: Retrieve the IdP SAML 2.0 metadata
+      description: >-
+        Returns the EntityDescriptor for entityID https://shibidp.polimi.it/idp/shibboleth. Verified 200
+        application/xml on 2026-09-01. No authentication; no parameters.
+      operationId: getIdpMetadata
+      responses:
+        '200':
+          description: SAML 2.0 EntityDescriptor.
+          content:
+            application/xml:
+              schema:
+                type: string
+                contentMediaType: application/xml
+              examples:
+                entityDescriptor:
+                  summary: Live IdP metadata
+                  externalValue: ../examples/politecnico-di-milano-shibboleth-idp-metadata.xml
+components:
+  securitySchemes: {}
+security: []

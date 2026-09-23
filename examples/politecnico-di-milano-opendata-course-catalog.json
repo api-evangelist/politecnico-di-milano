@@ -1,0 +1,54 @@
+{
+  "recordset": [
+    {
+      "CdS Ordinamento": "D.M. 270/04",
+      "CdS Tipo": "Laurea",
+      "CdS": "Progettazione dell'Architettura",
+      "CdS Interclasse": "No",
+      "CdS Classe Laurea": "L-17",
+      "CdS Classe Laurea 2": null,
+      "Offerta Inizio AA": "2014",
+      "Offerta Fine AA": "2026"
+    },
+    {
+      "CdS Ordinamento": "D.M. 270/04",
+      "CdS Tipo": "Laurea Magistrale",
+      "CdS": "Architettura - Ambiente Costruito - Interni - Architecture - Built Environment - Interiors",
+      "CdS Interclasse": "No",
+      "CdS Classe Laurea": "LM-4",
+      "CdS Classe Laurea 2": null,
+      "Offerta Inizio AA": "2008",
+      "Offerta Fine AA": "2025"
+    },
+    {
+      "CdS Ordinamento": "D.M. 509/99",
+      "CdS Tipo": "Laurea",
+      "CdS": "Ingegneria Aerospaziale",
+      "CdS Interclasse": "No",
+      "CdS Classe Laurea": "10",
+      "CdS Classe Laurea 2": null,
+      "Offerta Inizio AA": "2000",
+      "Offerta Fine AA": "2009"
+    },
+    {
+      "CdS Ordinamento": "D.M. 270/04",
+      "CdS Tipo": "Laurea",
+      "CdS": "Design della Comunicazione",
+      "CdS Interclasse": "No",
+      "CdS Classe Laurea": "L-4",
+      "CdS Classe Laurea 2": null,
+      "Offerta Inizio AA": "2008",
+      "Offerta Fine AA": "2026"
+    },
+    {
+      "CdS Ordinamento": "D.M. 509/99",
+      "CdS Tipo": "Laurea",
+      "CdS": "Scienze dell'Architettura",
+      "CdS Interclasse": "No",
+      "CdS Classe Laurea": "04",
+      "CdS Classe Laurea 2": null,
+      "Offerta Inizio AA": "2000",
+      "Offerta Fine AA": "2009"
+    }
+  ]
+}

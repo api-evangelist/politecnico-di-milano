@@ -1,0 +1,133 @@
+<EntityDescriptor entityID="https://shibidp.polimi.it/idp/shibboleth"
+                  xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
+                  xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+                  xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui"
+                  xmlns:shibmd="urn:mace:shibboleth:metadata:1.0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <IDPSSODescriptor protocolSupportEnumeration="urn:mace:shibboleth:1.0 urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:2.0:protocol">
+
+        <Extensions>
+            <shibmd:Scope regexp="false">polimi.it</shibmd:Scope>
+            <mdui:UIInfo>
+				<mdui:DisplayName xml:lang="en">Politecnico di Milano</mdui:DisplayName>
+				<mdui:DisplayName xml:lang="it">Politecnico di Milano</mdui:DisplayName>
+				<mdui:Description xml:lang="en">Identity Provider for Politecnico di Milano users</mdui:Description>
+				<mdui:Description xml:lang="it">Identity Provider per gli utenti del Politecnico di Milano</mdui:Description>
+				<mdui:InformationURL xml:lang="it">https://aunicalogin.polimi.it/aunicalogin/idem.jsp</mdui:InformationURL>
+				<mdui:InformationURL xml:lang="en">https://aunicalogin.polimi.it/aunicalogin/idem.jsp?lang=EN</mdui:InformationURL>
+				<mdui:Logo height="60" width="80">https://shibidp.polimi.it/idp/images/logo_polimi_80x60px.png</mdui:Logo>
+				<mdui:Logo height="16" width="16">https://shibidp.polimi.it/idp/images/favicon_polimi_16x16px.png</mdui:Logo>
+			</mdui:UIInfo>
+		</Extensions>
+		
+		<!-- CERTIFICATO VALIDO DAL 25/05/2025 AL 18/05/2040-->
+		<KeyDescriptor use="encryption">
+			<ds:KeyInfo>
+				<ds:X509Data>
+					<ds:X509Certificate>
+MIIEDzCCAvegAwIBAgIUTvv3wvMkb8HFfyZ2xiXcoAp2F+IwDQYJKoZIhvcNAQEL
+BQAwgZYxCzAJBgNVBAYTAklUMQ8wDQYDVQQIDAZNaWxhbm8xDzANBgNVBAcMBk1p
+bGFubzEPMA0GA1UECgwGUG9saW1pMQ4wDAYDVQQLDAVBc2ljdDEaMBgGA1UEAwwR
+c2hpYmlkcC5wb2xpbWkuaXQxKDAmBgkqhkiG9w0BCQEWGXN0YWZmLWZyYW1ld29y
+a0Bwb2xpbWkuaXQwHhcNMjUwNTIyMDg0MDA3WhcNNDAwNTE4MDg0MDA3WjCBljEL
+MAkGA1UEBhMCSVQxDzANBgNVBAgMBk1pbGFubzEPMA0GA1UEBwwGTWlsYW5vMQ8w
+DQYDVQQKDAZQb2xpbWkxDjAMBgNVBAsMBUFzaWN0MRowGAYDVQQDDBFzaGliaWRw
+LnBvbGltaS5pdDEoMCYGCSqGSIb3DQEJARYZc3RhZmYtZnJhbWV3b3JrQHBvbGlt
+aS5pdDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAJN/u8sLfw70G/wm
+bEeDzH+cYJfh6gk5SJ9kD5GtyJI1Fyfcpuox1wWLTEqZU0b3iWuiFIVw7F0Tsk9E
+4L5NToQYpCeEVJjLocHlYabYjyWclyLBmt2F2eJ+xJLl8DV/YkYJYIYTBXTk1OCJ
+oAUpd5Hw/koFokBf0DU0Joq66P3sJdslf01QbbSYNkUAeBdljMiqYyP6rkSabgiO
+izf25E18AL6XtfhcoZ28aj7CKH0zHMett2y1fMOa2ef9J6i1dAYJqXlQj2+s13f+
+gzVxw8aR8pa58YMSjY7TjRDVulCi4rV2WUuG9gyVo7bF63A7D195CYkoCESpMxS7
+DdMe/VsCAwEAAaNTMFEwHQYDVR0OBBYEFKZsJSljRFp+R31ZcxrQAYq7eI9DMB8G
+A1UdIwQYMBaAFKZsJSljRFp+R31ZcxrQAYq7eI9DMA8GA1UdEwEB/wQFMAMBAf8w
+DQYJKoZIhvcNAQELBQADggEBAIITuPGmSw9DzvbPFxPgFi6o+YA99EdzRR+ZI87x
+Kcv3ukXcYRl9nLSc5W4SwyBOtRl4WX67nBwQmORhpPFkvZuPe6NEtBi1EJBfy8pM
+tdnlOYFDKNJCFauPj/CLg5kSOGzwZW9XfIUWAs7sCHLNNRc6vvlWUgm2M3qmI5Yq
+0j0nYzwSX33R6XqAxlQr3JtO1IdL51UJc1dXMOvkZNsSgAhJ8ZITkcgC1mrlrhF0
+iiZU5xNCGr9HJNlH7ks02r7tAPu8xRQqxeREMnYpTMD6MYXeJYo0YzaZA8vWwBhv
+Bt3w1H30jZwPHpg4UUgiehowLkYOZy8WtjzOv8jUH+Hev1U=					
+					</ds:X509Certificate>
+				</ds:X509Data>
+			</ds:KeyInfo>
+		</KeyDescriptor>
+		<!-- CERTIFICATO VALIDO DAL 16/02/2026-AL 18/05/2040 -->
+		<KeyDescriptor use="signing">
+			<ds:KeyInfo>
+				<ds:X509Data>
+					<ds:X509Certificate>
+MIIEDzCCAvegAwIBAgIUQCCcnZqN2CYoWq2r1HHtOZsmcuowDQYJKoZIhvcNAQEL
+BQAwgZYxCzAJBgNVBAYTAklUMQ8wDQYDVQQIDAZNaWxhbm8xDzANBgNVBAcMBk1p
+bGFubzEPMA0GA1UECgwGUG9saW1pMQ4wDAYDVQQLDAVBc2ljdDEaMBgGA1UEAwwR
+c2hpYmlkcC5wb2xpbWkuaXQxKDAmBgkqhkiG9w0BCQEWGXN0YWZmLWZyYW1ld29y
+a0Bwb2xpbWkuaXQwHhcNMjUwNTIyMDg0MDA3WhcNNDAwNTE4MDg0MDA3WjCBljEL
+MAkGA1UEBhMCSVQxDzANBgNVBAgMBk1pbGFubzEPMA0GA1UEBwwGTWlsYW5vMQ8w
+DQYDVQQKDAZQb2xpbWkxDjAMBgNVBAsMBUFzaWN0MRowGAYDVQQDDBFzaGliaWRw
+LnBvbGltaS5pdDEoMCYGCSqGSIb3DQEJARYZc3RhZmYtZnJhbWV3b3JrQHBvbGlt
+aS5pdDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANxDbc9ihsUVNOEV
+SLFcoy5A9Y0dJlyfENMVfZXe0iBLefoZpr1DmPGnRT7CYUYgeqSKQVVBD0zF+kKF
+v/HH79DANGUGEDqTYk1ZRvMi86I24NnhYQkUGBn5xU6hTDLrXI/dYzHN5+c1ffsI
+O5rkGF4TDRed7q4e0N11jllUOxi23M94yg7Vs+kG000Ul9od8vlxeoQjaO7VNEpp
+LknbzXMI0smz+jO7z4toMZh1OEHt08QUfBs2ztxbcJoQDyzPGCCqXf51V2eRZfvB
+9Em3oyaWvtIyV5xO/HE5XrWk0fdi6oI9+Tfs3EM39xqbLm6cERCnHVWo4rJ5z1CD
+pXQK3xECAwEAAaNTMFEwHQYDVR0OBBYEFJ9v8WpZr8KMx3A6WWfgMYiakPIpMB8G
+A1UdIwQYMBaAFJ9v8WpZr8KMx3A6WWfgMYiakPIpMA8GA1UdEwEB/wQFMAMBAf8w
+DQYJKoZIhvcNAQELBQADggEBAHHq8bsukxdbDH9Kkz1MngCXayC63MOr5dKUoOtQ
+W95kdvIQCwBbZpaHXigN97NV2aphWTogl2TyjItjrcnLTkqqaR9flxKWwVUaY1aH
+b0Jj7x6OxF2vJgQcMH/Q/1Lt/QmjmTpYvPFepWlzKPxrEkpsJOYXfDPTv4Rm+Auz
+SwmjNiSQ87Kl5Y0QIOGTZY9S5e6nVyn1T1YXhq0J97fMqRElwDT+JHJ6aqx0wa6g
+A79poI7DSIzV3y7WVlcIvZs8u14WF3L0M3fQl/OTBHa3EBYl5BB84Lg6nMUhpLUw
+VeBnryhyBeW5FbApd9+KEU9cyWikLcQ6QniAiUVbzKSN1sg=					
+					</ds:X509Certificate>
+				</ds:X509Data>
+			</ds:KeyInfo>
+		</KeyDescriptor>
+		
+		<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+							 Location="https://shibidp.polimi.it/idp/profile/SAML2/POST/SLO"/>
+
+		<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign"
+					 		 Location="https://shibidp.polimi.it/idp/profile/SAML2/POST-SimpleSign/SLO"/>
+
+		<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" 
+							 Location="https://shibidp.polimi.it/idp/profile/SAML2/Redirect/SLO"/>
+
+        <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+		<NameIDFormat>urn:mace:shibboleth:1.0:nameIdentifier</NameIDFormat>
+
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" 
+                             Location="https://shibidp.polimi.it/idp/profile/SAML2/POST/SSO" />
+
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" 
+                             Location="https://shibidp.polimi.it/idp/profile/SAML2/POST-SimpleSign/SSO" />
+        
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" 
+                             Location="https://shibidp.polimi.it/idp/profile/SAML2/Redirect/SSO" />
+
+        <SingleSignOnService Binding="urn:mace:shibboleth:1.0:profiles:AuthnRequest" 
+                             Location="https://shibidp.polimi.it/idp/profile/Shibboleth/SSO" />	
+
+    </IDPSSODescriptor>
+
+
+	<Organization>
+		<OrganizationName xml:lang="it">Politecnico di Milano Identity Provider</OrganizationName>
+		<OrganizationName xml:lang="en">Politecnico di Milano Identity Provider</OrganizationName>
+		<OrganizationDisplayName xml:lang="it">Politecnico di Milano</OrganizationDisplayName>
+		<OrganizationDisplayName xml:lang="en">Politecnico di Milano</OrganizationDisplayName>
+		<OrganizationURL xml:lang="it">http://www.polimi.it/</OrganizationURL>
+		<OrganizationURL xml:lang="en">http://www.polimi.it/en</OrganizationURL>		
+	</Organization>
+	<ContactPerson contactType="technical">
+		<GivenName>Roberto</GivenName>
+		<SurName>Gaffuri</SurName>
+		<EmailAddress>mailto:roberto.gaffuri@polimi.it</EmailAddress>
+	</ContactPerson>
+	<!-- Contatto per SIRTFI -->
+	<ContactPerson contactType="other">
+		<GivenName>Security Operation Center</GivenName>
+		<EmailAddress>mailto:sicurezza-ict-asict@polimi.it</EmailAddress>
+	</ContactPerson>
+	
+</EntityDescriptor>    

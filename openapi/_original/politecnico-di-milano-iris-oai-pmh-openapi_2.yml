@@ -1,0 +1,143 @@
+# x-archived-from: politecnico-di-milano-iris-oai-pmh-openapi.yml
+# x-archived-on: 2026-09-16
+openapi: 3.1.0
+info:
+  title: Re.Public@Polimi OAI-PMH
+  version: '2026-09-01'
+  summary: OAI-PMH 2.0 metadata harvesting interface for IRIS Re.Public@Polimi, the institutional research repository of Politecnico di Milano.
+  description: |
+    `https://re.public.polimi.it/oai/request` is the OAI-PMH 2.0 harvesting endpoint of
+    **IRIS Re.Public@Polimi**, the institutional research product catalogue of Politecnico di Milano.
+    A live `Identify` on 2026-09-01 returns `repositoryName: IRIS - POLIMI - prod`,
+    `adminEmail: catalogoricerca@notifiche.polimi.it`, `earliestDatestamp: 2015-06-10T07:10:04Z`,
+    `deletedRecord: transient`, granularity `YYYY-MM-DDThh:mm:ssZ`, and the OAI identifier scheme
+    `oai:re.public.polimi.it:11311/<id>`.
+
+    **Operator note.** The repository platform is IRIS, a CINECA product built on DSpace-CRIS, and the
+    authenticated IRIS REST API at `/rest/api` is CINECA's contract, not the university's — it is
+    recorded in `apis.yml` as a tenant relationship and no contract for it is saved here. What this
+    document describes is different: an **open standard** (OAI-PMH 2.0, an OpenArchives specification)
+    served from the institution's own host, over the institution's own research metadata, with an
+    institution-owned admin contact and an institution-owned repository identifier. That is an
+    institution-operated surface.
+
+    Requests are unauthenticated GETs with a mandatory `verb` parameter. Responses are XML in the
+    `http://www.openarchives.org/OAI/2.0/` namespace; errors are returned as HTTP 200 with an
+    `<error code="...">` element, which is how OAI-PMH is specified to behave.
+
+    This description was DERIVED by API Evangelist from live probes. Politecnico di Milano publishes no
+    OpenAPI for this endpoint.
+  contact:
+    name: Re.Public@Polimi
+    url: https://re.public.polimi.it/
+    email: catalogoricerca@notifiche.polimi.it
+  x-operator: institution
+  x-operator-evidence: >-
+    Host re.public.polimi.it is under the institution's own registrable domain (polimi.it); Identify
+    returns adminEmail catalogoricerca@notifiche.polimi.it and repositoryIdentifier re.public.polimi.it.
+  x-standard: OAI-PMH 2.0
+  x-provenance:
+    generated: '2026-09-01'
+    method: derived
+    source:
+      - https://re.public.polimi.it/oai/request?verb=Identify
+      - https://re.public.polimi.it/oai/request?verb=ListMetadataFormats
+      - https://re.public.polimi.it/oai/request?verb=ListSets
+      - https://re.public.polimi.it/oai/request?verb=ListRecords&metadataPrefix=oai_dc
+      - https://re.public.polimi.it/oai/request?verb=Bogus
+      - http://www.openarchives.org/OAI/openarchivesprotocol.html
+servers:
+  - url: https://re.public.polimi.it
+    description: IRIS Re.Public@Polimi production repository
+tags:
+  - name: Harvesting
+    description: The six OAI-PMH 2.0 verbs.
+paths:
+  /oai/request:
+    get:
+      tags: [ Harvesting ]
+      summary: Issue an OAI-PMH request
+      description: >-
+        Single dispatch endpoint for all six OAI-PMH verbs. Which other parameters are legal depends on
+        the verb: GetRecord requires identifier and metadataPrefix; ListRecords and ListIdentifiers
+        require metadataPrefix unless resumptionToken is supplied; Identify, ListSets and
+        ListMetadataFormats take no required parameters.
+      operationId: oaiRequest
+      parameters:
+        - name: verb
+          in: query
+          required: true
+          description: The OAI-PMH verb to execute.
+          schema:
+            type: string
+            enum: [ Identify, ListMetadataFormats, ListSets, ListIdentifiers, ListRecords, GetRecord ]
+          example: Identify
+        - name: metadataPrefix
+          in: query
+          required: false
+          description: >-
+            Metadata format to return. Verified available on this endpoint: oai_dc, didl, ore
+            (ListMetadataFormats, 2026-09-01).
+          schema:
+            type: string
+            enum: [ oai_dc, didl, ore ]
+          example: oai_dc
+        - name: identifier
+          in: query
+          required: false
+          description: OAI identifier of a single record, e.g. oai:re.public.polimi.it:11311/1263149.
+          schema:
+            type: string
+          example: oai:re.public.polimi.it:11311/1263149
+        - name: set
+          in: query
+          required: false
+          description: >-
+            setSpec to restrict a listing to, from ListSets — communities are com_11311_<id>,
+            collections col_11311_<id>.
+          schema:
+            type: string
+          example: com_11311_960626
+        - name: from
+          in: query
+          required: false
+          description: Lower bound on record datestamp, granularity YYYY-MM-DDThh:mm:ssZ.
+          schema:
+            type: string
+            format: date-time
+        - name: until
+          in: query
+          required: false
+          description: Upper bound on record datestamp, granularity YYYY-MM-DDThh:mm:ssZ.
+          schema:
+            type: string
+            format: date-time
+        - name: resumptionToken
+          in: query
+          required: false
+          description: Flow-control token returned by a previous incomplete list response.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: >-
+            An OAI-PMH response document. Protocol errors are ALSO returned with HTTP 200 and carry an
+            <error code="..."> element instead of a verb element — see errors/.
+          content:
+            text/xml:
+              schema:
+                type: string
+                contentMediaType: text/xml
+              examples:
+                identify:
+                  summary: Identify — live response
+                  externalValue: ../examples/politecnico-di-milano-iris-oai-identify.xml
+                listMetadataFormats:
+                  summary: ListMetadataFormats — live response
+                  externalValue: ../examples/politecnico-di-milano-iris-oai-listmetadataformats.xml
+                badVerb:
+                  summary: Illegal verb — HTTP 200 carrying error code badVerb
+                  externalValue: ../examples/politecnico-di-milano-iris-oai-error-badverb.xml
+components:
+  securitySchemes: {}
+security: []

@@ -1,0 +1,36 @@
+{
+  "provider": "politecnico-di-milano",
+  "sources": [
+    "_original/politecnico-di-milano-iris-oai-pmh-openapi.yml",
+    "_original/politecnico-di-milano-opendata-openapi.yml",
+    "_original/politecnico-di-milano-shibboleth-idp-openapi.yml"
+  ],
+  "outputs": [
+    "politecnico-di-milano-harvesting-api-openapi.yml",
+    "politecnico-di-milano-catalog-api-openapi.yml",
+    "politecnico-di-milano-distributions-api-openapi.yml",
+    "politecnico-di-milano-federation-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "5 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "politecnico-di-milano-iris-oai-pmh-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "politecnico-di-milano-opendata-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "politecnico-di-milano-shibboleth-idp-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "_original/politecnico-di-milano-shibboleth-idp-openapi_2.yml: archived document superseded by a larger archived document",
+    "_original/politecnico-di-milano-politesi-oai-pmh-openapi_2.yml: archived document superseded by a larger archived document",
+    "_original/politecnico-di-milano-politesi-oai-pmh-openapi.yml: archived document superseded by a larger archived document",
+    "_original/politecnico-di-milano-opendata-openapi_2.yml: archived document superseded by a larger archived document",
+    "_original/politecnico-di-milano-iris-oai-pmh-openapi_2.yml: archived document superseded by a larger archived document",
+    "politecnico-di-milano-catalog-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "politecnico-di-milano-distributions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "politecnico-di-milano-federation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "politecnico-di-milano-harvesting-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}

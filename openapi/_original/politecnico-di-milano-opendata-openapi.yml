@@ -1,0 +1,185 @@
+openapi: 3.1.0
+info:
+  title: Politecnico di Milano Open Data
+  version: '2026-09-01'
+  summary: DCAT-AP_IT catalogue and the CSV/JSON distributions of the 25 open datasets Politecnico di Milano publishes at opendata.polimi.it.
+  description: |
+    Politecnico di Milano operates its own open data portal at `www.opendata.polimi.it`. The portal is
+    not CKAN, Socrata or a `data.json` endpoint — probes for all three return 404 — which is why an
+    earlier profile of this institution recorded "no documented programmatic API". It is instead a
+    static, standards-based surface: a single **DCAT-AP_IT catalogue serialised as RDF Turtle** at
+    `/opendata_polimi.ttl`, declaring 25 `dcat:Dataset` resources, each with a CSV and a JSON
+    `dcat:Distribution` at a stable, unauthenticated URL. The portal's own web pages parse that same
+    Turtle file client-side (N3.js) to render dataset metadata, so the catalogue is the machine
+    interface, not a by-product of one.
+
+    Every dataset is published by `https://www.polimi.it` (`dct:publisher`, `dct:creator`,
+    `dct:rightsHolder`) under CC BY 4.0. The JSON distributions are UTF-8 with a BOM and wrap their
+    rows in a single `recordset` array; column names are Italian and vary per dataset.
+
+    This description was DERIVED by API Evangelist from live probes of the portal on 2026-09-01. It is
+    not published by Politecnico di Milano, and the university does not describe this surface with an
+    OpenAPI of its own.
+  contact:
+    name: Politecnico di Milano Open Data
+    url: https://www.opendata.polimi.it/
+  license:
+    name: CC BY 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+  x-operator: institution
+  x-operator-evidence: >-
+    Host www.opendata.polimi.it is under the institution's own registrable domain (polimi.it); the DCAT
+    catalogue names https://www.polimi.it as dcat catalog publisher, dct:creator and dct:rightsHolder.
+  x-provenance:
+    generated: '2026-09-01'
+    method: derived
+    source:
+      - https://www.opendata.polimi.it/opendata_polimi.ttl
+      - https://www.opendata.polimi.it/distribution/course_catalog/json/course_catalog.json
+      - https://www.opendata.polimi.it/distribution/course_catalog/csv/course_catalog.csv
+      - https://opendata.polimi.it/script/fillDatasetMetadataTable.js
+servers:
+  - url: https://www.opendata.polimi.it
+    description: Politecnico di Milano open data portal
+tags:
+  - name: Catalog
+    description: The DCAT-AP_IT catalogue describing every published dataset.
+  - name: Distributions
+    description: The CSV and JSON files each dataset is distributed as.
+paths:
+  /opendata_polimi.ttl:
+    get:
+      tags: [ Catalog ]
+      summary: Retrieve the DCAT-AP_IT catalogue
+      description: >-
+        Returns the full catalogue as RDF Turtle — one dcatapit:Catalog, one dcatapit:Agent for the
+        university, 25 dcatapit:Dataset resources and 50 dcatapit:Distribution resources. Verified
+        200 text/turtle, 79,404 bytes, on 2026-09-01.
+      operationId: getCatalog
+      responses:
+        '200':
+          description: The catalogue in RDF Turtle.
+          content:
+            text/turtle:
+              schema:
+                type: string
+              examples:
+                excerpt:
+                  summary: First 4 KB of the live catalogue
+                  externalValue: ../examples/politecnico-di-milano-opendata-dcat-catalog-excerpt.ttl
+  /dataset/{dataset}/:
+    get:
+      tags: [ Catalog ]
+      summary: Human-readable dataset page
+      description: >-
+        HTML landing page for one dataset. Metadata is rendered in the browser from
+        /opendata_polimi.ttl; the page itself carries no machine-readable payload.
+      operationId: getDatasetPage
+      parameters:
+        - $ref: '#/components/parameters/Dataset'
+      responses:
+        '200':
+          description: HTML page.
+          content:
+            text/html:
+              schema:
+                type: string
+  /distribution/{dataset}/json/{dataset}.json:
+    get:
+      tags: [ Distributions ]
+      summary: Retrieve a dataset's JSON distribution
+      description: >-
+        Returns the dataset's rows as a single JSON object with a `recordset` array. The body is
+        UTF-8 with a byte-order mark, so a strict JSON parser must be told `utf-8-sig`. Verified
+        200 application/json for course_catalog (157 rows) and research_products (219 rows) on
+        2026-09-01. Row keys are Italian and differ per dataset.
+      operationId: getJsonDistribution
+      parameters:
+        - $ref: '#/components/parameters/Dataset'
+      responses:
+        '200':
+          description: The dataset's rows.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recordset'
+              examples:
+                courseCatalog:
+                  summary: First five rows of course_catalog
+                  externalValue: ../examples/politecnico-di-milano-opendata-course-catalog.json
+        '404':
+          description: No such dataset or distribution.
+          content:
+            text/html:
+              schema:
+                type: string
+  /distribution/{dataset}/csv/{dataset}.csv:
+    get:
+      tags: [ Distributions ]
+      summary: Retrieve a dataset's CSV distribution
+      description: >-
+        Returns the same rows as text/csv. Verified 200 text/csv, 14,060 bytes, for course_catalog
+        on 2026-09-01.
+      operationId: getCsvDistribution
+      parameters:
+        - $ref: '#/components/parameters/Dataset'
+      responses:
+        '200':
+          description: The dataset's rows as CSV.
+          content:
+            text/csv:
+              schema:
+                type: string
+        '404':
+          description: No such dataset or distribution.
+          content:
+            text/html:
+              schema:
+                type: string
+components:
+  parameters:
+    Dataset:
+      name: dataset
+      in: path
+      required: true
+      description: Dataset identifier, as declared by dcat:dataset in the catalogue.
+      schema:
+        type: string
+        enum:
+          - admission_title
+          - course_catalog
+          - course_offering
+          - degrees_ects_grade_distributions
+          - employment_bachelor_arc
+          - employment_bachelor_des
+          - employment_bachelor_eng
+          - employment_master_arc
+          - employment_master_des
+          - employment_master_eng
+          - enrolments
+          - exams_ects_grade_distributions
+          - graduates
+          - graduates_by_cohort
+          - international_mobility
+          - internships
+          - phd_course_catalog
+          - phd_course_offering
+          - phd_enrolments
+          - phd_exams_ects_grade_distributions
+          - publication_authors
+          - research_products
+          - scientific_publications
+          - scopus_contribution_by_nation
+          - wos_contribution_by_nation
+  schemas:
+    Recordset:
+      type: object
+      required: [ recordset ]
+      additionalProperties: false
+      properties:
+        recordset:
+          type: array
+          description: The dataset's rows. Keys are dataset-specific Italian column labels.
+          items:
+            type: object
+            additionalProperties: true

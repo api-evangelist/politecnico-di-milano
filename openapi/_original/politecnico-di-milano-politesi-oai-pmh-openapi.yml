@@ -1,0 +1,126 @@
+openapi: 3.1.0
+info:
+  title: POLITESI OAI-PMH
+  version: '2026-09-01'
+  summary: OAI-PMH 2.0 metadata harvesting interface for POLITESI, the Politecnico di Milano thesis and dissertation repository.
+  description: |
+    `https://www.politesi.polimi.it/oai/request` is the OAI-PMH 2.0 harvesting endpoint of **POLITESI**,
+    the institutional archive of Politecnico di Milano theses and dissertations. A live `Identify` on
+    2026-09-01 returns `repositoryName: POLITESI`, `adminEmail: deposito-tesilaurea@notifiche.polimi.it`,
+    `earliestDatestamp: 2010-08-24T12:39:32Z`, `deletedRecord: transient`, and the OAI identifier scheme
+    `oai:www.politesi.polimi.it:10589/<id>`.
+
+    It is a second, separate repository from Re.Public@Polimi — a different handle prefix (10589 rather
+    than 11311), a different earliest datestamp, a different admin contact, and a **wider set of metadata
+    formats**: `ListMetadataFormats` returns `oai_dc`, `didl`, `ore` and `datacite`, so this endpoint can
+    be harvested in the DataCite metadata schema.
+
+    Same operator reasoning as Re.Public@Polimi: the platform underneath is CINECA's IRIS, but OAI-PMH
+    is an OpenArchives standard served from the institution's own host over the institution's own
+    theses, with an institution-owned admin contact and repository identifier.
+
+    DERIVED by API Evangelist from live probes. Politecnico di Milano publishes no OpenAPI for it.
+  contact:
+    name: POLITESI
+    url: https://www.politesi.polimi.it/
+    email: deposito-tesilaurea@notifiche.polimi.it
+  x-operator: institution
+  x-operator-evidence: >-
+    Host www.politesi.polimi.it is under the institution's own registrable domain (polimi.it); Identify
+    returns adminEmail deposito-tesilaurea@notifiche.polimi.it and repositoryIdentifier
+    www.politesi.polimi.it.
+  x-standard: OAI-PMH 2.0
+  x-provenance:
+    generated: '2026-09-01'
+    method: derived
+    source:
+      - https://www.politesi.polimi.it/oai/request?verb=Identify
+      - https://www.politesi.polimi.it/oai/request?verb=ListMetadataFormats
+      - https://www.politesi.polimi.it/oai/request?verb=ListSets
+      - http://www.openarchives.org/OAI/openarchivesprotocol.html
+servers:
+  - url: https://www.politesi.polimi.it
+    description: POLITESI thesis repository
+tags:
+  - name: Harvesting
+    description: The six OAI-PMH 2.0 verbs.
+paths:
+  /oai/request:
+    get:
+      tags: [ Harvesting ]
+      summary: Issue an OAI-PMH request
+      description: >-
+        Single dispatch endpoint for all six OAI-PMH verbs. GetRecord requires identifier and
+        metadataPrefix; ListRecords and ListIdentifiers require metadataPrefix unless resumptionToken is
+        supplied; Identify, ListSets and ListMetadataFormats take no required parameters.
+      operationId: oaiRequest
+      parameters:
+        - name: verb
+          in: query
+          required: true
+          description: The OAI-PMH verb to execute.
+          schema:
+            type: string
+            enum: [ Identify, ListMetadataFormats, ListSets, ListIdentifiers, ListRecords, GetRecord ]
+          example: Identify
+        - name: metadataPrefix
+          in: query
+          required: false
+          description: >-
+            Metadata format to return. Verified available on this endpoint: oai_dc, didl, ore, datacite
+            (ListMetadataFormats, 2026-09-01).
+          schema:
+            type: string
+            enum: [ oai_dc, didl, ore, datacite ]
+          example: datacite
+        - name: identifier
+          in: query
+          required: false
+          description: OAI identifier of a single record, e.g. oai:www.politesi.polimi.it:10589/1234.
+          schema:
+            type: string
+          example: oai:www.politesi.polimi.it:10589/1234
+        - name: set
+          in: query
+          required: false
+          description: setSpec from ListSets — communities com_10589_<id>, collections col_10589_<id>.
+          schema:
+            type: string
+          example: com_10589_1
+        - name: from
+          in: query
+          required: false
+          description: Lower bound on record datestamp, granularity YYYY-MM-DDThh:mm:ssZ.
+          schema:
+            type: string
+            format: date-time
+        - name: until
+          in: query
+          required: false
+          description: Upper bound on record datestamp, granularity YYYY-MM-DDThh:mm:ssZ.
+          schema:
+            type: string
+            format: date-time
+        - name: resumptionToken
+          in: query
+          required: false
+          description: Flow-control token returned by a previous incomplete list response.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: >-
+            An OAI-PMH response document. Protocol errors are also returned with HTTP 200 and carry an
+            <error code="..."> element — see errors/.
+          content:
+            text/xml:
+              schema:
+                type: string
+                contentMediaType: text/xml
+              examples:
+                identify:
+                  summary: Identify — live response
+                  externalValue: ../examples/politecnico-di-milano-politesi-oai-identify.xml
+components:
+  securitySchemes: {}
+security: []

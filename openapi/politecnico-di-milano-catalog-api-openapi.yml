@@ -1,0 +1,98 @@
+openapi: 3.2.0
+info:
+  title: Politecnico di Milano Open Data Catalog API
+  version: '2026-09-01'
+  summary: DCAT-AP_IT catalogue and the CSV/JSON distributions of the 25 open datasets Politecnico di Milano publishes at opendata.polimi.it.
+  description: Politecnico di Milano operates its own open data portal at `www.opendata.polimi.it`.
+  contact:
+    name: Politecnico di Milano Open Data
+    url: https://www.opendata.polimi.it/
+  license:
+    name: CC BY 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+  x-operator: institution
+  x-operator-evidence: Host www.opendata.polimi.it is under the institution's own registrable domain (polimi.it); the DCAT catalogue names https://www.polimi.it as dcat catalog publisher, dct:creator and dct:rightsHolder.
+  x-provenance:
+    generated: '2026-09-01'
+    method: derived
+    source:
+    - https://www.opendata.polimi.it/opendata_polimi.ttl
+    - https://www.opendata.polimi.it/distribution/course_catalog/json/course_catalog.json
+    - https://www.opendata.polimi.it/distribution/course_catalog/csv/course_catalog.csv
+    - https://opendata.polimi.it/script/fillDatasetMetadataTable.js
+servers:
+- url: https://www.opendata.polimi.it
+  description: Politecnico di Milano open data portal
+tags:
+- name: Catalog
+  description: The DCAT-AP_IT catalogue describing every published dataset.
+paths:
+  /opendata_polimi.ttl:
+    get:
+      tags:
+      - Catalog
+      summary: Retrieve the DCAT-AP_IT catalogue
+      description: Returns the full catalogue as RDF Turtle — one dcatapit:Catalog, one dcatapit:Agent for the university, 25 dcatapit:Dataset resources and 50 dcatapit:Distribution resources. Verified 200 text/turtle, 79,404 bytes, on 2026-09-01.
+      operationId: getCatalog
+      responses:
+        '200':
+          description: The catalogue in RDF Turtle.
+          content:
+            text/turtle:
+              schema:
+                type: string
+              examples:
+                excerpt:
+                  summary: First 4 KB of the live catalogue
+                  externalValue: ../examples/politecnico-di-milano-opendata-dcat-catalog-excerpt.ttl
+  /dataset/{dataset}/:
+    get:
+      tags:
+      - Catalog
+      summary: Human-readable dataset page
+      description: HTML landing page for one dataset. Metadata is rendered in the browser from /opendata_polimi.ttl; the page itself carries no machine-readable payload.
+      operationId: getDatasetPage
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      responses:
+        '200':
+          description: HTML page.
+          content:
+            text/html:
+              schema:
+                type: string
+components:
+  parameters:
+    Dataset:
+      name: dataset
+      in: path
+      required: true
+      description: Dataset identifier, as declared by dcat:dataset in the catalogue.
+      schema:
+        type: string
+        enum:
+        - admission_title
+        - course_catalog
+        - course_offering
+        - degrees_ects_grade_distributions
+        - employment_bachelor_arc
+        - employment_bachelor_des
+        - employment_bachelor_eng
+        - employment_master_arc
+        - employment_master_des
+        - employment_master_eng
+        - enrolments
+        - exams_ects_grade_distributions
+        - graduates
+        - graduates_by_cohort
+        - international_mobility
+        - internships
+        - phd_course_catalog
+        - phd_course_offering
+        - phd_enrolments
+        - phd_exams_ects_grade_distributions
+        - publication_authors
+        - research_products
+        - scientific_publications
+        - scopus_contribution_by_nation
+        - wos_contribution_by_nation
