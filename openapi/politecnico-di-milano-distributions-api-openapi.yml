@@ -76,6 +76,19 @@ paths:
               schema:
                 type: string
 components:
+  schemas:
+    Recordset:
+      type: object
+      required:
+      - recordset
+      additionalProperties: false
+      properties:
+        recordset:
+          type: array
+          description: The dataset's rows. Keys are dataset-specific Italian column labels.
+          items:
+            type: object
+            additionalProperties: true
   parameters:
     Dataset:
       name: dataset
@@ -110,16 +123,3 @@ components:
         - scientific_publications
         - scopus_contribution_by_nation
         - wos_contribution_by_nation
-  schemas:
-    Recordset:
-      type: object
-      required:
-      - recordset
-      additionalProperties: false
-      properties:
-        recordset:
-          type: array
-          description: The dataset's rows. Keys are dataset-specific Italian column labels.
-          items:
-            type: object
-            additionalProperties: true
