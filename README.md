@@ -1,4 +1,4 @@
-# Politecnico di Milano (politecnico-di-milano)
+# Politecnico di Milano
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,76 +64,143 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Politecnico di Milano is Italy's largest technical university — engineering, architecture and design — and a public research institution in Milan (ROR [01nffqt88](https://ror.org/01nffqt88)). This repository catalogs its public, machine-readable footprint as an [APIs.json](https://apisjson.org) profile, under the API Evangelist **university pipeline**, whose first question is never "is there a spec" but **who operates the thing the spec describes**. Re-profiled 2026-09-01.
+Politecnico di Milano is Italy's largest technical university — engineering, architecture and design — and a public research institution in Milan, ROR 01nffqt88. Like almost every university it is a federation of buyers rather than an API producer: there is no developer portal, no public API key, no status page and no changelog anywhere on polimi.it. What it does operate itself is real and was verified live on 2026-09-01. An open data portal at www.opendata.polimi.it publishes a DCAT-AP_IT catalogue in RDF Turtle describing 25 datasets, each with a CSV and a JSON distribution at a stable unauthenticated URL — all 25 returned 200 and 38,255 rows on probe, covering the course catalogue, enrolments, graduates, mobility, internships, grade distributions and research output under CC BY 4.0. Two separate OAI-PMH 2.0 endpoints are served from its own hosts: Re.Public@Polimi for research products and POLITESI for theses, the latter also harvestable in the DataCite kernel-4 metadata schema. It runs its own Shibboleth identity provider, shibidp.polimi.it, whose SAML 2.0 metadata is public and whose entityID is registered in the Italian IDEM GARR federation. Against that, the surfaces it does NOT own are recorded as such: the authenticated IRIS REST API on its repository host is CINECA's product contract, not the university's, and api.polimi.it is a live Kong gateway with no publicly routable endpoint behind it. This profile saves contracts only for the surfaces the institution itself operates.
 
-There is no developer portal, no public API key, no status page and no changelog on polimi.it. What the institution genuinely operates itself is smaller than a vendor's catalogue and entirely real: an open data portal publishing a DCAT-AP_IT catalogue in RDF Turtle over 25 live datasets, two separate OAI-PMH 2.0 endpoints, and its own Shibboleth identity provider registered in the Italian IDEM GARR federation.
+**Areas:** Education · Higher Education · University · Technical University · Research · Open Data · Research Repository · Course Catalog · Identity Federation · OAI-PMH · Shibboleth · DCAT
 
-- APIs.json: https://raw.githubusercontent.com/api-evangelist/politecnico-di-milano/refs/heads/main/apis.yml
-- Run it with Naftiko: https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=politecnico-di-milano-api-evangelist&utm_content=repo
+## Politecnico di Milano on APIs.io
 
-## Type
+Everything profiled for Politecnico di Milano is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/politecnico-di-milano/](https://apis.io/providers/politecnico-di-milano/)** — or go straight to one of the APIs or properties below.
 
-- **university** / **Technical University** / **Index** / **Provider** / **Public**
+### APIs (7)
 
-## Tags
+- [IDEM GARR Identity Federation membership](https://apis.io/apis/politecnico-di-milano/idem-garr-federation/) — Politecnico di Milano's membership of IDEM, the Italian academic identity federation run by GARR. The federation aggregate at md.idem.garr.it carries the…
+- [ROR registration](https://apis.io/apis/politecnico-di-milano/ror-registration/) — The institution's entry in the Research Organization Registry, ROR ID 01nffqt88, carrying its canonical name in Italian, English and French and its own…
+- [IRIS REST API (CINECA platform tenancy)](https://apis.io/apis/politecnico-di-milano/iris-rest/) — Politecnico di Milano's tenancy of CINECA's IRIS research information platform. The data is the university's; the contract is the vendor's, and it is not…
+- [Politecnico di Milano Catalog API](https://apis.io/apis/politecnico-di-milano/politecnico-di-milano-catalog-api/) — The DCAT-AP_IT catalogue describing every published dataset.
+- [Politecnico di Milano Distributions API](https://apis.io/apis/politecnico-di-milano/politecnico-di-milano-distributions-api/) — The CSV and JSON files each dataset is distributed as.
+- [Politecnico di Milano Federation API](https://apis.io/apis/politecnico-di-milano/politecnico-di-milano-federation-api/) — SAML 2.0 metadata publication.
+- [Politecnico di Milano Harvesting API](https://apis.io/apis/politecnico-di-milano/politecnico-di-milano-harvesting-api/) — The six OAI-PMH 2.0 verbs.
 
-Education, Higher Education, University, Technical University, Research, Open Data, Research Repository, Course Catalog, Identity Federation, OAI-PMH, Shibboleth, DCAT, Italy, Europe
+### Published properties
 
-## Surfaces, by operator
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Every surface below carries an `x-operator` in `apis.yml`. `institution` means the university runs it and the contract is saved here. `tenant`, `federation` and `registry` are real institutional relationships whose contracts belong to somebody else and are deliberately **not** saved here.
+#### JSON Schema (2)
 
-### institution — contracts saved
+The data models the API reads and writes.
 
-- **Politecnico di Milano Open Data** — `https://www.opendata.polimi.it` — a DCAT-AP_IT catalogue in RDF Turtle at [/opendata_polimi.ttl](https://www.opendata.polimi.it/opendata_polimi.ttl) declaring 25 datasets, each with a CSV and a JSON distribution at a stable unauthenticated URL. All 25 JSON distributions returned 200 and 38,255 rows on 2026-09-01. CC BY 4.0. → [openapi](openapi/politecnico-di-milano-opendata-openapi.yml) · [schema](json-schema/politecnico-di-milano-opendata-recordset-schema.json) · [vocabulary](vocabulary/politecnico-di-milano-opendata-vocabulary.yml)
-- **Re.Public@Polimi OAI-PMH** — `https://re.public.polimi.it/oai/request` — OAI-PMH 2.0 over the institutional research catalogue. `Identify` returns "IRIS - POLIMI - prod"; formats `oai_dc`, `didl`, `ore`. → [openapi](openapi/politecnico-di-milano-iris-oai-pmh-openapi.yml)
-- **POLITESI OAI-PMH** — `https://www.politesi.polimi.it/oai/request` — a **second** OAI-PMH endpoint, over theses, additionally harvestable in the **DataCite kernel-4** metadata schema. Not recorded in any previous profile. → [openapi](openapi/politecnico-di-milano-politesi-oai-pmh-openapi.yml)
-- **Shibboleth Identity Provider** — `https://shibidp.polimi.it/idp/shibboleth` — public SAML 2.0 metadata, scope `polimi.it`, signing and encryption keys valid to 2040. → [openapi](openapi/politecnico-di-milano-shibboleth-idp-openapi.yml)
+- [Politecnico di Milano course catalog row](https://apis.io/schemas/politecnico-di-milano/politecnico-di-milano-course-catalog/)
+- [Politecnico di Milano open data recordset](https://apis.io/schemas/politecnico-di-milano/politecnico-di-milano-opendata-recordset/)
 
-### federation / registry / tenant — relationships recorded, contracts not saved
+#### JSON-LD (2)
 
-- **IDEM GARR federation** (`federation`) — the university's IdP entityID plus three of its service providers appear in the IDEM aggregate. A federation is shared by definition; the sharing is not misattribution.
-- **ROR** (`registry`) — [ror.org/01nffqt88](https://ror.org/01nffqt88). A registry the institution is registered *in*.
-- **IRIS REST API** (`tenant`) — `https://re.public.polimi.it/rest/api`, 401 Basic. Runs on the university's host, but the contract is CINECA's IRIS product. The tenancy is a real fact; the vendor's contract is not saved here.
+Linked-data contexts for the provider's vocabulary.
 
-## Domain standard conformance (Kin Score `education` regime)
+- [Politecnico Di Milano Context](https://apis.io/jsonld/politecnico-di-milano/politecnico-di-milano-context/)
+- [Politecnico Di Milano Opendata Catalog Context](https://apis.io/jsonld/politecnico-di-milano/politecnico-di-milano-opendata-catalog/)
 
-Conformant: **oai-pmh** (two endpoints), **shibboleth**, **saml**. Partial: **datacite** (metadata schema served by POLITESI — but no DataCite registrant exists for this institution), **orcid** (iDs in Highwire citation meta tags on repository item pages, absent from the OAI-PMH output). Not found: crossref, scim, lti, oneroster, ed-fi, caliper, qti. Full evidence in [conformance/](conformance/politecnico-di-milano-conformance.yml).
+#### Examples (1)
 
-## Plans / Rate Limits / FinOps
+Example requests and responses.
 
-- Plans & Pricing: [plans/politecnico-di-milano-plans-pricing.yml](plans/politecnico-di-milano-plans-pricing.yml)
-- Rate Limits: [rate-limits/politecnico-di-milano-rate-limits.yml](rate-limits/politecnico-di-milano-rate-limits.yml)
-- FinOps: [finops/politecnico-di-milano-finops.yml](finops/politecnico-di-milano-finops.yml)
+- [Politecnico Di Milano Opendata Course Catalog](https://apis.io/examples/politecnico-di-milano/politecnico-di-milano-opendata-course-catalog/)
 
-## Timestamps
+#### Governance rules (1)
 
-- Created: 2026-06-03
-- Modified: 2026-09-01
+Spectral rulesets for the provider's contracts.
 
-## Common Properties
+- [Politecnico di Milano API Rules](https://apis.io/rules/politecnico-di-milano/politecnico-di-milano-spectral-ruleset/)
 
-- Website: https://www.polimi.it/en/
-- Open data: https://www.opendata.polimi.it/
-- Course catalog dataset: https://www.opendata.polimi.it/dataset/course_catalog/
-- Research repositories: https://re.public.polimi.it/ · https://www.politesi.polimi.it/
-- Identity federation: https://shibidp.polimi.it/idp/shibboleth
-- AI policy: [Linee guida IA per il personale tecnico amministrativo](https://www.normativa.polimi.it/fileadmin/user_upload/regolamenti/privacy_e_sicurezza/LG_IA_PTA_v1.0def.pdf) · [normativa.polimi.it/privacy-e-sicurezza](https://www.normativa.polimi.it/privacy-e-sicurezza)
-- Privacy: https://www.polimi.it/en/the-politecnico/communication/privacy
-- LinkedIn: https://www.linkedin.com/school/polimi/
+#### Security (2)
 
-## Notes — what was probed, and what came back negative
+Authentication, trust centre, and vulnerability disclosure.
 
-- Everything above was probed live on **2026-09-01**. Every pointer emitted in `apis.yml` was re-fetched; all resolve (LinkedIn returns 999, its standard bot challenge, which grades as live).
-- The open data portal was previously recorded as having **no documented programmatic API**. That was wrong, and instructively so: CKAN (`/api/3/action/package_list`), Socrata and `data.json` all 404 here, and the probe stopped there. The machine surface is a DCAT Turtle catalogue that the portal's own pages parse client-side with N3.js.
-- `api.polimi.it` is a live **Kong 3.6.1** gateway on the institution's own domain, but every path probed (`/`, `/docs`, `/swagger`, `/openapi.json`, `/v1`, `/api`, `/health`, `/graphql`) returns `{"message":"no Route matched with those values"}`. No public API sits behind it, and none is claimed.
-- `github.com/POLIMI` is **not** the university — an unrelated individual's organisation created in 2013 holding Coursera machine-learning exercises. No `GitHubOrganization` pointer is asserted.
-- No **DataCite** registrant and no **Crossref** member matching this institution exist (`api.datacite.org/repositories?query=polimi` → 0; `api.crossref.org/members?query=politecnico` → unrelated matches). No DOI prefix is claimed.
-- No `llms.txt`, no `.well-known/security.txt`, no status page, no changelog, no deprecation policy on any institution-operated surface.
-- `trasparenza.polimi.it` publishes the D.Lgs 33/2013 data/metadata catalogue as HTML only — no machine-readable form.
-- Searching in **Italian** mattered: both the AI governance documents and the open data catalogue are published only on Italian-language surfaces.
-- Nothing here was fabricated. Every example in [examples/](examples/) is a live payload captured from the institution's own host, listed with its status code in [examples/politecnico-di-milano-examples.yml](examples/politecnico-di-milano-examples.yml).
+- [Politecnico Di Milano Authentication](https://apis.io/security/politecnico-di-milano/politecnico-di-milano-authentication/)
+- [Politecnico Di Milano Domain Security](https://apis.io/security/politecnico-di-milano/politecnico-di-milano-domain-security/)
 
-## Maintainers
+#### OAuth scopes (1)
 
-- Kin Lane — kin@apievangelist.com
+The permissions the API asks for.
+
+- [Politecnico Di Milano Scopes](https://apis.io/scopes/politecnico-di-milano/politecnico-di-milano-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Politecnico Di Milano Plans Pricing](https://apis.io/plans/politecnico-di-milano/politecnico-di-milano-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Politecnico Di Milano Rate Limits](https://apis.io/rate-limits/politecnico-di-milano/politecnico-di-milano-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Politecnico Di Milano Finops](https://apis.io/finops/politecnico-di-milano/politecnico-di-milano-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.polimi.it/en/)
+- [Support](https://www.polimi.it/en/the-politecnico/contacts)
+- [Blog](https://www.polimi.it/en/the-politecnico/news)
+- [Privacy policy](https://www.polimi.it/en/the-politecnico/communication/privacy)
+
+## API Evangelist rating
+
+**Kin Score 27.8** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 24.4 |
+| Contract governance | 26.5 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 28.6 |
+| Access clarity | 15.8 |
+
+**Agent readiness 24.5** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 30.4** — Education & Research
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/politecnico-di-milano/](https://apis.io/providers/politecnico-di-milano/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Politecnico di Milano: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/politecnico-di-milano/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
